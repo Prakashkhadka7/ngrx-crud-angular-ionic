@@ -1,0 +1,30 @@
+<h3>Customers</h3>
+<table class="table table-hover">
+    <thead>
+        <tr class="table-responsive">
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
+            <th scope="col">Date Of Birth</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="5" class="alert alert-danger"></td>
+        </tr>
+        <tr>
+            <tr *ngFor="let student of student$ | async">
+                <th scope="row">{{student.name}}</th>
+                <td>{{student.email}}</td>
+                <!-- <td>{{student.address}}</td> -->
+                <td>{{student.age}}</td>
+                <td>{{student.dob | date}}</td>
+                <th>
+                    <ion-button type="button" [routerLink]="['/routePath']">edit</ion-button>
+                    <br>
+                    <ion-button type="button" [routerLink]="['/routePath']"><i class="fa fa-delete"></i>delete</ion-button>
+                </th>
+            </tr>
+    </tbody>
+</table>

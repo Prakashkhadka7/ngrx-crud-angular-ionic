@@ -1,0 +1,17 @@
+{
+    "students": [{
+            "name": "Prakash Khadka",
+            "phone": "9852670991",
+            "address": "Deheg,Netherlands",
+            "section": "Platinum",
+            "id": 1
+        },
+        {
+            "name": "Prabin Katwal",
+            "phone": "9815047812",
+            "address": "USA Texas",
+            "section": "Gold",
+            "id": 2
+        }
+    ]
+}
