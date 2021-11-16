@@ -18,12 +18,16 @@ import {
   RouterStateSerializer
 } from "@ngrx/router-store";
 import { IonicModule } from '@ionic/angular';
+import { LoginComponent } from './login/login.component';
+import { RegistrationPageComponent } from './registration-page/registration-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent,
+    RegistrationPageComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,7 @@ import { IonicModule } from '@ionic/angular';
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([]),
     HttpClientModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -12,6 +12,8 @@ import { studentReducer } from './state/student.reducer';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { RouteReuseStrategy } from '@angular/router';
 import { AppComponent } from '../app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -24,6 +26,9 @@ import { AppComponent } from '../app.component';
   imports: [
     CommonModule,
     IonicModule.forRoot(),
+    FormsModule,
+    NgxPaginationModule,
+    ReactiveFormsModule,
     StudentsRoutingModule,
     EffectsModule.forFeature([StudentEffect]),
     StoreModule.forFeature("students", studentReducer),

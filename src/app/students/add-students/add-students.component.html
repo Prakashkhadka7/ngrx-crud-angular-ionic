@@ -1,8 +1,7 @@
 <ion-content>
     <h3>Add students</h3>
 
-    <form class="form-inline mb-4">
-        <!-- <form [formGroup]="studentsForm" (submit)="createStudents()" class="form-inline mb-4"> -->
+    <form [formGroup]="studentsForm" (ngSubmit)="createStudents()" class="form-inline mb-4">
         <label class="sr-only" for="Name">Name</label>
         <div class="input-group mb-2 mr-sm-2">
             <input type="text" class="form-control" formControlName="name" placeholder="name">
@@ -17,15 +16,23 @@
         <div class="input-group mb-2 mr-sm-2">
             <input type="text" class="form-control" formControlName="address" placeholder="Address">
         </div>
-
-        <label class="sr-only" for="section">section</label>
+        <label class="sr-only" for="Email">Email</label>
         <div class="input-group mb-2 mr-sm-2">
-            <select formControlName="section" class="form-control">
-        <option>Basic</option>
-        <option>Pro</option>
-        <option>Platinum</option>
-      </select>
+            <input type="text" class="form-control" formControlName="email" placeholder="Email">
         </div>
+
+        <label class="sr-only" for="dob">D.O.B</label>
+        <div class="input-group mb-2 mr-sm-2">
+            <input type="date" class="form-control" formControlName="dob" placeholder="dob">
+        </div>
+
+        <label class="sr-only" for="Age">Age</label>
+        <div class="input-group mb-2 mr-sm-2">
+            <input type="text" class="form-control" formControlName="age" placeholder="Age">
+        </div>
+
+
+
         <button type="submit" class="btn btn-primary mb-2">Add students</button>
     </form>
 </ion-content>

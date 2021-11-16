@@ -18,18 +18,36 @@ export class StudentsListComponent implements OnInit {
   student$!: Observable<Student[]>;
   error$!: Observable<String>;
   tempVariable!: Student[];
+  cp: number;
+  totalStudents: number;
   constructor(
     private store: Store<Student>,
     private studentService: StudentService
   ) {}
 
   ngOnInit(): void {
+    // this.cp = 1;
     this.store.dispatch(new StudentActions.LoadStudents());
     this.student$ = this.store.pipe(select(fromStudent.getStudents));
-
+    this.error$ = this.store.pipe(select(fromStudent.getError));
+    // console.log(this.student$);
     setTimeout(() => {
       this.student$.subscribe((res) => (this.tempVariable = res));
-      console.log('value of tempVariable', this.tempVariable);
-    }, 900);
+      this.totalStudents = this.tempVariable.length;
+    }, 2000);
+  }
+
+  deleteStudent(student: Student) {
+
+    if (confirm('Are you sure you want to Delete the User?')) {
+      this.store.dispatch(new StudentActions.DeleteStudent(student.id));
+    this.student$ = this.store.pipe(select(fromStudent.getStudents));
+
+    }
+  }
+
+  editStudent(student: Student) {
+    // console.log(student.id)
+      this.store.dispatch(new StudentActions.LoadStudent(student.id));
   }
 }
