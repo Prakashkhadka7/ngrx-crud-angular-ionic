@@ -2,16 +2,18 @@
     "students": [{
             "name": "Prakash Khadka",
             "phone": "9852670991",
-            "address": "Deheg,Netherlands",
-            "section": "Platinum",
+            "age": "Deheg,Netherlands",
+            "dob": "Platinum",
+            "email": "example.com",
             "id": 1
         },
         {
             "name": "Prabin Katwal",
             "phone": "9815047812",
-            "address": "USA Texas",
-            "section": "Gold",
-            "id": 2
+            "age": "Deheg,Netherlands",
+            "dob": "Platinum",
+            "email": "example.com",
+            "id": 1
         }
     ]
 }

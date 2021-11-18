@@ -30,8 +30,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NgxPaginationModule,
     ReactiveFormsModule,
     StudentsRoutingModule,
-    EffectsModule.forFeature([StudentEffect]),
     StoreModule.forFeature("students", studentReducer),
+    EffectsModule.forFeature([StudentEffect]),
+
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

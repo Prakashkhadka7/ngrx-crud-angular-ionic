@@ -24,7 +24,7 @@ export class StudentService {
   }
 
   updateStudent(student:Student): Observable<Student> {
-    return this.http.patch<Student>(
+    return this.http.put<Student>(
       `${environment.apiUrl}/${student.id}`,
       student
     );

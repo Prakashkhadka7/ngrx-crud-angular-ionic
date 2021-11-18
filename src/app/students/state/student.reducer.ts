@@ -20,10 +20,15 @@ import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 // }
 export interface StudentState extends EntityState<Student> {
   selectedStudentId: number | null;
-  Students: Student[];
+  // Students: Student[];
+  selectedStudentList:any;
   loading: boolean;
   loaded: boolean;
   error: string;
+}
+export function selectUserId(a: Student): number {
+  //In this case this would be optional since primary key is id
+  return a.id;
 }
 
 export interface AppState extends fromRoot.AppState {
@@ -35,18 +40,21 @@ export interface AppState extends fromRoot.AppState {
 //   loaded: false,
 //   error: '',
 // };
+export const studentAdapter : EntityAdapter<Student>=
+  createEntityAdapter<Student>(
+    // selectId: selectUserId
+  );
+
 export const defaultStudent: StudentState = {
   ids: [],
   entities: {},
+  selectedStudentList:{},
   selectedStudentId: null,
   loading: false,
   loaded: false,
   error: '',
-  Students: [],
 };
 
-export const studentAdapter: EntityAdapter<Student> =
-  createEntityAdapter<Student>();
 
 export const initialState = studentAdapter.getInitialState(defaultStudent);
 
@@ -71,17 +79,18 @@ export function studentReducer(
     case StudentActions.StudentActionTypes.LOAD_STUDENTS_FAIL: {
       return {
         ...state,
-        Students: [],
         loading: false,
         loaded: false,
-        error: action.payload,
+        error: action.payload
       };
     }
 
     case StudentActions.StudentActionTypes.LOAD_STUDENT_SUCCESS: {
       return studentAdapter.addOne(action.payload, {
         ...state,
-        selectedStudentId: action.payload.id,
+        selectedStudentId: action.payload[0].id,
+        selectedStudentList: action.payload
+
       });
     }
     case StudentActions.StudentActionTypes.LOAD_STUDENT_FAIL: {
@@ -101,6 +110,7 @@ export function studentReducer(
     }
     case StudentActions.StudentActionTypes.UPDATE_STUDENT_SUCCESS: {
       return studentAdapter.updateOne(action.payload, state);
+
     }
     case StudentActions.StudentActionTypes.UPDATE_STUDENT_FAIL: {
       return {
@@ -123,7 +133,9 @@ export function studentReducer(
   }
 }
 
-const getStudentFeatureState = createFeatureSelector<StudentState>('students');
+const getStudentFeatureState = createFeatureSelector<StudentState>(
+  "students"
+);
 
 export const getStudents = createSelector(
   getStudentFeatureState,
@@ -146,10 +158,10 @@ export const getError = createSelector(
 
 export const getCurrentStudentId = createSelector(
   getStudentFeatureState,
-  (state: StudentState)=> state.selectedStudentId
+  (state: StudentState) => state.selectedStudentId
 )
 export const getCurrentStudent = createSelector(
   getStudentFeatureState,
   getCurrentStudentId,
-  (state: StudentState)=> state.entities[state.selectedStudentId]
+  state => state.entities[state.selectedStudentId]
 )

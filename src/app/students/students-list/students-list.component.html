@@ -15,16 +15,16 @@
             <td colspan="5" class="alert alert-danger"></td>
         </tr> -->
         <tr>
-            <tr *ngFor="let student of student$ | async | paginate: { itemsPerPage: 5, currentPage: cp ,totalItems:totalStudents}">
+            <tr *ngFor="let student of students$ | async | paginate: { itemsPerPage: 5, currentPage: cp ,totalItems:totalStudents}">
                 <td scope="row">{{student.name}}</td>
                 <td>{{student.email}}</td>
                 <td>{{student.phone}}</td>
                 <td>{{student.age}}</td>
                 <td>{{student.dob | date}}</td>
                 <td>
-                    <ion-button type="button" color="primary" (click)='editStudent(student)'>edit</ion-button>
+                    <ion-button type="button" color="primary" (click)=editStudent(student)>edit</ion-button>
                     <br>
-                    <ion-button type="button" color="primary" (click)='deleteStudent(student)'><i class="fa fa-delete"></i>delete</ion-button>
+                    <ion-button type="button" color="primary" (click)=deleteStudent(student)><i class="fa fa-delete"></i>delete</ion-button>
                 </td>
             </tr>
             <tr>

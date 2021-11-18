@@ -1,2 +1,1 @@
-export interface AppState{
-}
+export interface AppState {}

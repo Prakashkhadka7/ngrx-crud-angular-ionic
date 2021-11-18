@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class EditStudentsComponent implements OnInit {
   studentUpdateForm: FormGroup;
+  totalStudents: any;
   constructor(
     private formBuilder: FormBuilder,
     private store: Store<fromStudent.AppState>
@@ -26,24 +27,31 @@ export class EditStudentsComponent implements OnInit {
       phone: ['', Validators.required],
       age: ['', Validators.required],
       dob: ['', Validators.required],
+      id: null
     });
-    const students$: Observable<Student> = this.store.select(
+    const students$: Observable<any> = this.store.select(
       fromStudent.getCurrentStudent
     );
 
 
+    //     setTimeout(() => {
+    //   this.student$.subscribe((res) => console.log(res));
+    //   // this.totalStudents = this.tempVariable.length;
+    // }, 2000);
+
 setTimeout(() => {
+//   this.studentUpdateForm.reset();
   students$.subscribe((currentStudent) => {
     console.log(currentStudent)
     if (currentStudent) {
       this.studentUpdateForm.patchValue({
-        name: currentStudent[0].name,
-        email: currentStudent[0].email,
-        address: currentStudent[0].address,
-        phone: currentStudent[0].phone,
-        age: currentStudent[0].age,
-        dob: currentStudent[0].dob,
-        id: currentStudent[0].id,
+        name: currentStudent.name,
+        email: currentStudent.email,
+        address: currentStudent.address,
+        phone: currentStudent.phone,
+        age: currentStudent.age,
+        dob: currentStudent.dob.split('T'),
+        id: currentStudent.id,
       });
     }
   });
@@ -60,7 +68,7 @@ setTimeout(() => {
       email: this.studentUpdateForm.get('email').value,
       age: this.studentUpdateForm.get('age').value,
       dob: this.studentUpdateForm.get('dob').value,
-      // id: this.studentUpdateForm.get('id').value,
+      id: this.studentUpdateForm.get('id').value,
     };
     this.store.dispatch(new StudentActions.UpdateStudent(updatedStudent));
   }
