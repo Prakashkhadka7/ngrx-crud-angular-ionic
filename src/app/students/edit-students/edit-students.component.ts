@@ -29,7 +29,8 @@ export class EditStudentsComponent implements OnInit {
       dob: ['', Validators.required],
       id: null
     });
-    const students$: Observable<any> = this.store.select(
+
+    const student$: Observable<any> = this.store.select(
       fromStudent.getCurrentStudent
     );
 
@@ -41,21 +42,22 @@ export class EditStudentsComponent implements OnInit {
 
 setTimeout(() => {
 //   this.studentUpdateForm.reset();
-  students$.subscribe((currentStudent) => {
-    console.log(currentStudent)
+  student$.subscribe((currentStudent) => {
+    // console.log(currentStudent);
     if (currentStudent) {
+    console.log(currentStudent);
       this.studentUpdateForm.patchValue({
         name: currentStudent.name,
         email: currentStudent.email,
         address: currentStudent.address,
         phone: currentStudent.phone,
         age: currentStudent.age,
-        dob: currentStudent.dob.split('T'),
+        dob: currentStudent.dob? currentStudent.dob.split('T') : '' ,
         id: currentStudent.id,
       });
     }
   });
-}, 2000);
+}, 0);
 
 
   }

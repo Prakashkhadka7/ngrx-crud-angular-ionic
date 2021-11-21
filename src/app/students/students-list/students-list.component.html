@@ -22,7 +22,7 @@
                 <td>{{student.age}}</td>
                 <td>{{student.dob | date}}</td>
                 <td>
-                    <ion-button type="button" color="primary" (click)=editStudent(student)>edit</ion-button>
+                    <ion-button type="button" color="primary" (click)='editStudent(student)'>edit</ion-button>
                     <br>
                     <ion-button type="button" color="primary" (click)=deleteStudent(student)><i class="fa fa-delete"></i>delete</ion-button>
                 </td>

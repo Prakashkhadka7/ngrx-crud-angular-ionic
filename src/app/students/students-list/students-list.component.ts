@@ -41,8 +41,13 @@ export class StudentsListComponent implements OnInit {
     }
   }
 
-  editStudent(student: Student) {
-    // console.log(student.id);
+  editStudent(student) {
     this.store.dispatch(new StudentActions.LoadStudent(student.id));
-  }
+
+
+    //     setTimeout(() => {
+    //   this.student$.subscribe((res) => console.log(res));
+    //   // this.totalStudents = this.tempVariable.length;
+    // }, 2000);
+}
 }

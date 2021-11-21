@@ -3,6 +3,7 @@ import * as fromRoot from '../state/app-state';
 import * as StudentActions from './student.actions';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+export const studentFeatureKey = 'students';
 
 //  export const initialState: StudentState ={
 //   students:{
@@ -21,15 +22,16 @@ import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 export interface StudentState extends EntityState<Student> {
   selectedStudentId: number | null;
   // Students: Student[];
+  // entities: any;
   selectedStudentList:any;
   loading: boolean;
   loaded: boolean;
   error: string;
 }
-export function selectUserId(a: Student): number {
-  //In this case this would be optional since primary key is id
-  return a.id;
-}
+// export function selectUserId(a: Student): number {
+//   //In this case this would be optional since primary key is id
+//   return a.id;
+// }
 
 export interface AppState extends fromRoot.AppState {
   students: StudentState;
@@ -44,19 +46,22 @@ export const studentAdapter : EntityAdapter<Student>=
   createEntityAdapter<Student>(
     // selectId: selectUserId
   );
-
-export const defaultStudent: StudentState = {
-  ids: [],
-  entities: {},
-  selectedStudentList:{},
+  // export const initialState = studentAdapter.getInitialState({
+  //   error: undefined,
+  //   selectedStudentId: null,
+  //   selectedStudentList: {}
+  // });
+export const initialState:  StudentState = studentAdapter.getInitialState({
+  // ids: [],
   selectedStudentId: null,
+  selectedStudentList: {},
   loading: false,
   loaded: false,
   error: '',
-};
+});
 
 
-export const initialState = studentAdapter.getInitialState(defaultStudent);
+// export const initialState = studentAdapter.getInitialState(defaultStudent);
 
 export function studentReducer(
   state = initialState,
@@ -88,7 +93,7 @@ export function studentReducer(
     case StudentActions.StudentActionTypes.LOAD_STUDENT_SUCCESS: {
       return studentAdapter.addOne(action.payload, {
         ...state,
-        selectedStudentId: action.payload[0].id,
+        selectedStudentId: action.payload.id,
         selectedStudentList: action.payload
 
       });
@@ -163,5 +168,5 @@ export const getCurrentStudentId = createSelector(
 export const getCurrentStudent = createSelector(
   getStudentFeatureState,
   getCurrentStudentId,
-  state => state.entities[state.selectedStudentId]
+  state => state.selectedStudentList
 )

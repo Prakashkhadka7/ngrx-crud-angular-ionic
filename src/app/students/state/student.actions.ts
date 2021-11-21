@@ -36,7 +36,7 @@ export class LoadStudent implements Action {
 }
 export class LoadStudentSuccess implements Action {
   readonly type = StudentActionTypes.LOAD_STUDENT_SUCCESS;
-  constructor(public payload: Student) {}
+  constructor(public payload: any) {}
 }
 export class LoadStudentFail implements Action {
   readonly type = StudentActionTypes.LOAD_STUDENT_FAIL;
