@@ -1,5 +1,5 @@
 # NgrxCrudExample
-
+# Complete Example of NGRX state management in Angular.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.9.
 # Backend with simple node js rest api
 Run it on the background https://github.com/Prakashkhadka7/nodejs-rest-apiCrud
