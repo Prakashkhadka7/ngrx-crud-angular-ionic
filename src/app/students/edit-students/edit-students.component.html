@@ -1,5 +1,7 @@
-<div class="mt-4">
-    <h3>Edit students</h3>
+<ion-grid>
+    <ion-toolbar>
+        <ion-title class="ion-no-padding">Edit Students</ion-title>
+    </ion-toolbar>
     <form [formGroup]="studentUpdateForm" (ngSubmit)="updateStudents()" class="form-inline mb-4">
         <label class="sr-only" for="Name">Name</label>
         <div class="input-group mb-2 mr-sm-2">
@@ -27,13 +29,13 @@
 
         <label class="sr-only" for="Age">Age</label>
         <div class="input-group mb-2 mr-sm-2">
-            <input type="text" class="form-control" formControlName="age" placeholder="Age">
+            <input type="text" class="form-control" formControlName="age" placeholder="Age" readonly>
         </div>
 
 
 
         <button type="submit" class="btn btn-primary mb-2">Update student</button>
+        <button type="button" class="btn btn-danger mb-2 mx-3" (click)="changeSection()">Cancel Update and Add New</button>
     </form>
     <!-- <button type="button" class="btn btn-primary mb-2" [routerLink]="['/students/add']" routerLinkActive="router-link-active">Add New student</button> -->
-
-</div>
+</ion-grid>

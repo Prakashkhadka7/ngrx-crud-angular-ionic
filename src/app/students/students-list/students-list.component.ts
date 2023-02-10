@@ -5,7 +5,7 @@ import * as StudentActions from '../state/student.actions';
 import { StudentService } from '../student.service';
 import { Student } from '../student.model';
 import * as fromStudent from '../state/student.reducer';
-
+import { PublicService } from '../../services/public.service';
 
 @Component({
   selector: 'app-students-list',
@@ -19,20 +19,17 @@ export class StudentsListComponent implements OnInit {
   tempVariable!: Student[];
   cp: number;
   totalStudents: number;
-  constructor(
-    private store: Store<fromStudent.AppState>
-  ) {}
+  constructor(private store: Store<fromStudent.AppState>,public publicService : PublicService) {}
 
   ngOnInit(): void {
-    // this.cp = 1;
     this.store.dispatch(new StudentActions.LoadStudents());
     this.students$ = this.store.pipe(select(fromStudent.getStudents));
     this.error$ = this.store.pipe(select(fromStudent.getError));
-    // console.log(this.student$);
-    setTimeout(() => {
-      this.students$.subscribe((res) => (this.tempVariable = res));
-      this.totalStudents = this.tempVariable.length;
-    }, 2000);
+
+    // setTimeout(() => {
+    //   this.students$.subscribe((res) => (this.tempVariable = res));
+    //   this.totalStudents = this.tempVariable.length;
+    // }, 2000);
   }
 
   deleteStudent(student: Student) {
@@ -42,12 +39,7 @@ export class StudentsListComponent implements OnInit {
   }
 
   editStudent(student) {
+    this.publicService.isAddSection = false;
     this.store.dispatch(new StudentActions.LoadStudent(student.id));
-
-
-    //     setTimeout(() => {
-    //   this.student$.subscribe((res) => console.log(res));
-    //   // this.totalStudents = this.tempVariable.length;
-    // }, 2000);
-}
+  }
 }

@@ -1,10 +1,11 @@
 {
-    "defaultProject": "ngrx-crud-example",
-    "projects": {
-        "ngrx-crud-example": {
-            "name": "ngrx-crud-example",
-            "integrations": {},
-            "type": "angular"
-        }
+  "defaultProject": "ngrx-crud-example",
+  "projects": {
+    "ngrx-crud-example": {
+      "name": "ngrx-crud-example",
+      "integrations": {},
+      "type": "angular",
+      "root": ""
     }
+  }
 }

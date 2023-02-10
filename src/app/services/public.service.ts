@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PublicService {
-
-  constructor(private toastCtrl: ToastController) { }
+  isAddSection: boolean = true;
+  constructor(private toastCtrl: ToastController,
+  private alertCtrl: AlertController
+  ) { }
 
 
   async presentToast(message) {
@@ -20,4 +22,18 @@ export class PublicService {
 
     (await toast).present();
   }
+
+
+async presentAlerts(message) {
+  const alert = await this.alertCtrl.create({
+    cssClass: 'my-custom-class',
+    header: 'Alert',
+    message: message,
+    buttons: ['OK']
+  });
+
+  await alert.present();
+
+  // const { role } = await alert.onDidDismiss();
+}
 }
